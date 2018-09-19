@@ -1,0 +1,2 @@
+Date currDate = new Date(System.currentTimeMillis()); //Wed Sep 19 23:54:07 ICT 2018
+Date duedate = new Date(System.currentTimeMillis() + 7 * 86400000); //Wed Sep 26 23:54:07 ICT 2018
