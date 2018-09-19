@@ -1,7 +1,42 @@
 Date currDate = new Date(System.currentTimeMillis()); //Wed Sep 19 23:54:07 ICT 2018
 Date duedate = new Date(System.currentTimeMillis() + 7 * 86400000); //Wed Sep 26 23:54:07 ICT 2018
+Date dateFormat = DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss");
 
 //===========Log4j===========
 //set up at a properties file = logging.file=target/${spring.application.name}.log
 private static final Logger LOGGER = LoggerFactory.getLogger(EurekaServerApplication.class);
 LOGGER.debug("The Eureka Server is running ............");
+
+//==========================CRUD========================
+public String save(CityEntity city, HttpServletRequest request) {
+  try {
+    cityService.save(city);
+  } catch (Exception e) {
+    e.printStackTrace();
+    return ResultInfo.error(-1, e.getMessage());
+  }
+  return ResultInfo.success();
+}
+
+public String delete(@PathVariable int id) {
+  try {
+    cityService.delete(id);
+  } catch (Exception e) {
+    e.printStackTrace();
+    return ResultInfo.error(-1, e.getMessage());
+  }
+  return ResultInfo.success();
+}
+
+@RequestMapping(method = RequestMethod.GET)
+public ResponseEntity<Object> doSomething(@RequestHeader(name = "remote_addr") String remoteAddress) {
+    logger.debug("The Remote address added by WebFiler is :: {}", remoteAddress);
+    ResponseEntity<Object> response = null;
+    try {
+        response = new ResponseEntity<Object>("SUCCESS", HttpStatus.OK);
+    } catch (Exception ex) {
+        logger.error(ex.getMessage(), ex);
+        return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return response;
+}
