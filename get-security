@@ -1,0 +1,2 @@
+User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+String name = user.getUsername();
