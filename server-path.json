@@ -1,0 +1,22 @@
+{
+  "server_path": "http://10.100.60.84:8529/MultibankAPI",
+  "local_path": "http://localhost:8529",
+  "verbs": {
+    "holiday": {
+      "holidays": "/api/holiday/holidays",
+      "add": "/api/holiday/add",
+      "delete": "/api/holiday/delete"
+    },
+    "auth": {
+      "register": "/api/auth/signup",
+      "login": "/api/auth/signin",
+      "currentuser": "/api/user/currentuser"
+    },
+    "user": {
+      "findall": "/api/user/findall",
+      "resetpass": "/api/user/resetpass",
+      "update": "/api/user/update",
+      "delete": "/api/user/delete"
+    }
+  }
+}
